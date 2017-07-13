@@ -13,20 +13,20 @@ Source Weapon Base
 Loadouts:
 
 Survivor:
-100 HP, 0 Armour (1 hit knife kill)
-Assault Rifle
-Pistol
+100 HP, 0 Armour,
+Assault Rifle,
+Pistol,
 Slightly less fast then the Infected.
 
 Initial Infected:
-300 HP
-Knife/Throwing Knife
-Pistol
+300 HP,
+Knife/Throwing Knife,
+Pistol,
 Very Fast
 
 Infected:
-100 HP
-Knife/Throwing Knife.
+100 HP,
+Knife/Throwing Knife,
 Slightly faster then the Survivors.
 
 Other Details:
