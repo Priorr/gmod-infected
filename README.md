@@ -13,7 +13,7 @@ Source Weapon Base
 Loadouts:
 
 Survivor:
-100 HP, 0 ARMOUR (1 hit knife kill)
+100 HP, 0 Armour (1 hit knife kill)
 Assault Rifle
 Pistol
 Slightly less fast then the Infected.
