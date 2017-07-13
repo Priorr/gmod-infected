@@ -1,34 +1,36 @@
 # gmod-infected
-GAMEMODE CREATED BY MEENO, PRIOR, SAM & CAIN
+Gamemode idea by Prior.
+Gamemode developed by Prior, Sam, Cain & Meeno.
 
-BASICS OF THE GAMEMODE
-BASED ON THE MW3 GAMEMODE INFECTED
-ONE PLAYER STARTS AS INFECTED, SUPER POWERFUL AND CAN INFECT OTHER PEOPLE
-PEOPLE THAT ARE INFECTED FOLLOWING THAT SPAWN WITH SIMPLE LOADOUTS. ONCE THE FIRST INFECTED DIES, THEY LOSE THEIR LOADOUT
+Basics of the Gamemode:
+Based on the Modern-Warfare 3 Infected Gamemode.
+One Player starts as a infected, very powerful and can infect other people.
+People that are infected spawn with basic loadouts. Once the first infected dies, they lose their loadout.E THEIR LOADOUT
 
-INTRICATE DETAILS
-SOURCE WEAPON BASE
+Intricate Details:
+Source Weapon Base
 
-LOADOUTS
-SURVIVOR
-100 HP, 0 ARMOUR (1 HIT KNIFE AWAY FROM DEATH)
-ASSAULT RIFLE
-PISTOL
-SLIGHTLY LESS SPEED INFECTED
+Loadouts:
 
-INFECTED STARTER
+Survivor:
+100 HP, 0 ARMOUR (1 hit knife kill)
+Assault Rifle
+Pistol
+Slightly less fast then the Infected.
+
+Initial Infected:
 300 HP
-KNIFE/THROWING KNIFE
-PISTOL
-MORE SPEED
+Knife/Throwing Knife
+Pistol
+Very Fast
 
-INFECTED
+Infected:
 100 HP
-KNIFE/THROWING KNIFE
-SPEED
+Knife/Throwing Knife.
+Slightly faster then the Survivors.
 
-OTHER DETAILS
-AMMO SCATTERED AROUND MAP, SURVIVORS ORIGNALLY LIMITED TO THEIR CLIP SIZE
+Other Details:
+Ammo can be scavanged off bodies, similar to the Call of Duty perk Scavanger.
 
-PLANNED CUSTOM STUFF
-XP SYSTEM LIKE MW3, LEVEL 1-60 AND PRESTIGE 1-20
+Planned Custom Stuff:
+XP System like MW3, Level 1-60 and Prestige 1-20.
