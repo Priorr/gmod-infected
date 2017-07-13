@@ -5,7 +5,7 @@ Gamemode developed by Prior, Sam, Cain & Meeno.
 Basics of the Gamemode:
 Based on the Modern-Warfare 3 Infected Gamemode.
 One Player starts as a infected, very powerful and can infect other people.
-People that are infected spawn with basic loadouts. Once the first infected dies, they lose their loadout.E THEIR LOADOUT
+People that are infected spawn with basic loadouts. Once the first infected dies, they lose their loadout.
 
 Intricate Details:
 Source Weapon Base
