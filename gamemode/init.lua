@@ -27,24 +27,23 @@ function GM:PlayerDeath( ply, wep, killer )
   	local plyteam = ply:Team() -- Call it once, not 50+ times
   
     if plyteam == TEAM_SURVIVOR then
-        if killersteam == TEAM_INIT_INFECTED or plyteam == TEAM_INFECTED then
+        if killersteam == TEAM_INIT_INFECTED or killerteam == TEAM_INFECTED then
             ply:SetTeam(TEAM_INFECTED)
-            return
-        elseif killersteam != TEAM_INIT_INFECTED or plyteam == TEAM_INFECTED then
+            return -- Whats the return for?? ~ Prior
+        elseif killersteam != TEAM_INIT_INFECTED or killerteam != TEAM_INFECTED and plyteam == TEAM_SURVIVOR then
             ply:SetTeam(TEAM_SPECTATOR)
-            return
+            return -- ^^^^
         end
 
         if killersteam == TEAM_INIT_INFECTED then
-            ply:SetTeam(TEAM_SPECTATOR)
-            killer:SetTeam(TEAM_INFECTED)
+            ply:SetTeam(TEAM_INFECTED) 						
+            killer:SetTeam(TEAM_INFECTED) -- Isnt this stuff already done on line 85 to 87???? ~ Prior	
             return
         end
     
-    -- stops running the ENTIRE CODE
         if plyteam == TEAM_INFECTED then
             if killersteam == TEAM_SURVIVOR then 
-                local ammobox = ents.Create("item_ammobox")
+                local ammobox = ents.Create("item_ammobox") -- We need to add/make a ammobox for this to work remember. Can just be universal ammo box (Like in CW2.0)
                 ammobox:SetPos( Vector( 0, 0, 10 ) )
                 ammobox:Spawn()
             end
@@ -55,4 +54,10 @@ function GM:PlayerDeath( ply, wep, killer )
     if killerteam == TEAM_INFECTED then
         --chat.AddText(victim, " has been claimed by ", inflictor, " and is now part of the infected team.") -- sent to client, not run serverside
     end
+end
+ 
+
+function GM:PlayerSpawn( ply )
+	if timer.Exists( "RoundLength" ) == true or timer.Exists( "PostRound" ) then GAMEMODE:PlayerSpawnAsSpectator( ply ) else -- If the round is active or the round had just finished, set the player as spectator when they join.
+      	return end
 end
