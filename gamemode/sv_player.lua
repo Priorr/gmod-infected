@@ -6,7 +6,8 @@ end
 infectedweps = {weapon_knife, weapon_pistol}
 survivorweps = {weapon_knife, weapon_assaultrifleshit, weapon_pistol}
 infectedinitweps = {weapon_knife, weapon_pistol}
-local randolol = 0
+local randomise = 0
+
 function GM:PlayerLoadout( ply ) 
   	local GetTeamName = ply:Team()
 
@@ -15,7 +16,8 @@ function GM:PlayerLoadout( ply )
      		ply:Give(v)
        	end
     
-    	ply:SetModel(tablename[math.random(1, #tablename)])
+    	local randolol = math.random(1, 6)
+    	ply:SetModel("survivor_0" .. randomise .. ".mdl")
   		return
     end
   
@@ -23,9 +25,9 @@ function GM:PlayerLoadout( ply )
     	for _, v in pairs(infectedweps) do
      	 	ply:Give(v)
     	end
-
-		local randolol = math.random(1, 6)
-    	ply:SetModel("infecteddogcunt_0" .. randolol.. ".mdl")
+		
+    	local randolol = math.random(1, 6)
+    	ply:SetModel("infected_0" .. randomise .. ".mdl")
   		return
 	end
 
@@ -34,7 +36,7 @@ function GM:PlayerLoadout( ply )
      	 	ply:Give(v)
     	end
 
-    	ply:SetModel("infecteddogcunt.mdl")
+    	ply:SetModel("initinfected.mdl")
   		return
 	end
 
