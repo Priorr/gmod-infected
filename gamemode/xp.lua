@@ -107,3 +107,16 @@ end
 function xpscale( c, n )
         return c * math.pow( n, 2.3 )
 end
+	
+	hook.Add("PlayerInitialSpawn", "UpdatePlayerInfo", function(ply)
+		local sid64 = ply:SteamID64()
+		
+		-- check if there steamid64 is in the table if not add it
+		local res = sql.Query( "SELECT * FROM infected_stats WHERE UID = '"..id64.."'")
+		if not res then
+			res = sql.Query( "INSERT INTO infected_stats VALUES( '"..sid64.."', '"..ply:Nick().."', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')" )
+		else
+			--update their nickname when they join no point updating this real time becuase it doesn't really do anything more for manual editing
+			res = sql.Query( "UPDATE infected_stats SET Player = '"..ply:Nick().."' WHERE UID64 = '"..sid64.."' " )
+		end
+	end)  
