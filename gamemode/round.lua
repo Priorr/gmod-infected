@@ -22,8 +22,10 @@ function RoundSetup( ply )
 	game.CleanUpMap() 
 	timer.Create("PreRound", GetConVarNumber("infected_preround_time"), 1, RoundStart()) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
 	SpawnPlayers()
+  	print("Spawning Players.")
   	for k, v in pairs(player.GetAll())
   		ply:SetTeam( TEAM_SURVIVOR )
+  	print("Setting all to Survivor."
   	end
 end
 
@@ -37,6 +39,7 @@ function RoundActive()
                 table.insert(survivors, v )
             elseif v:Team() == TEAM_INFECTED then
                 table.insert(infected, v )
+        	print("Selecting somebody to become Infected.").
             end
         end
     end
@@ -48,12 +51,11 @@ function RoundActive()
             RoundEnd(WIN_SURVIVOR)
         end
 end
-      
+
 function RoundEnd(winningteam)
     if table.sort( team.GetPlayers(TEAM_SURVIVOR) ) == 0 then
         timer.Create( "PostRound", GetConVarNumber("infected_postround_time"), 1, RoundStart() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
     end  
-      
-     
+  
     hook.Call("InfectedRoundWin", nil, winningteam)
 end
