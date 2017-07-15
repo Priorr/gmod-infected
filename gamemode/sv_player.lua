@@ -3,6 +3,24 @@ function PlayerInititialSetup( ply )
     PlayerLoadout( ply )
 end
 
+SurvivorModels = 
+{
+  models/player/Group01/Male_01.mdl
+  models/player/Group01/Male_02.mdl,
+  models/player/Group01/Male_03.mdl,
+  models/player/Group01/Male_04.mdl,
+  models/player/Group01/Male_05.mdl,
+  models/player/Group01/Male_06.mdl,
+  models/player/Group01/Male_07.mdl,
+  models/player/Group01/Female_01.mdl,
+  models/player/Group01/Female_02.mdl,
+  models/player/Group01/Female_03.mdl,
+  models/player/Group01/Female_04.mdl,
+  models/player/Group01/Female_05.mdl,
+  models/player/Group01/Female_06.mdl,
+  models/player/Group01/Female_07.mdl
+}
+
 infectedweps = {weapon_knife, weapon_pistol}
 survivorweps = {weapon_knife, weapon_assaultrifleshit, weapon_pistol}
 infectedinitweps = {weapon_knife, weapon_pistol}
@@ -15,9 +33,8 @@ function GM:PlayerLoadout( ply )
 		for _, v in pairs(infectedweps) do
      		ply:Give(v)
        	end
-    
-    	local randolol = math.random(1, 6)
-    	ply:SetModel("survivor_0" .. randomise .. ".mdl")
+    	
+    	ply:SetModel(table.Random(SurvivorModels))
   		return
     end
   
@@ -35,7 +52,7 @@ function GM:PlayerLoadout( ply )
     	for _, v in pairs(infectedweps) do
      	 	ply:Give(v)
     	end
-
+        
     	ply:SetModel("initinfected.mdl")
   		return
 	end
