@@ -48,11 +48,28 @@ function RoundWin( winningteam )
             	for k,ply in ipairs(players) do
                 	local data4 = sql.Query("SELECT iwin FROM infected_stats WHERE sid64 = '"..ply:sid64.."'")
                 	local iwin = data4[1]["iwin"]
-                	sql.Query("UPDATE infected SET iwin = "..tostring(iwin+1).." WHERE sid64 = '"..ply:sid64.."'")
+                	sql.Query("UPDATE infected_stats SET iwin = "..tostring(iwin+1).." WHERE sid64 = '"..ply:sid64.."'")
                 end
             end
+          
+          	if winningteam != TEAM_INFECTED then
+            	for k,ply in ipairs(players) do
+              		local data5 = sql.Query("SELECT iloses FROM infected_stats WHERE sid64 = '"..ply:sid64.."'")
+              		local iloses = data5[1]["iloses"]
+              		sql.Query("UPDATE infected_stats SET iloses = "..tostring(iloses+1).." WHERE sid64 = '"..ply:sid64.."'")
+              	end
+            end
+          
+            if winningteam != TEAM_SURVIVOR then
+            	for k,ply in ipairs(players) do
+              		local data6 = sql.Query("SELECT sloses FROM infected_stats WHERE sid64 = '"..ply:sid64.."'")
+              		local sloses = data6[1]["sloses"]
+              		sql.Query("UPDATE infected_stats SET sloses = "..tostring(sloses+1).." WHERE sid64 = '"..ply:sid64.."'")
+              	end
+            end
+          
 		end
               
-          
+        	
 	end)
 end
