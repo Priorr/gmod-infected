@@ -2,7 +2,15 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "sv_rounds.lua" )
 AddCSLuaFile( "sv_players.lua" )
+AddCSLuaFile( "xp_system.lua" )
 
+include( "xp_system.lua" )
+include( "lang.lua" )
+
+function GM:PlayerInitialSpawn 
+	ply:StatsLoad()
+  
+end
 local TEAM_INIT_INFECTED, TEAM_INFECTED, TEAM_SURVIVOR, TEAM_DEAD, TEAM_SPECTATOR = 1, 2, 3, 4, 5
 
 function GM:PlayerInitialSpawn( ply )
@@ -22,17 +30,18 @@ function GM:CanPlayerSuicide( ply )
 end
   
 -- Use tables for this
-function GM:PlayerDeath( ply, wep, killer ) 
+function GM:PlayerDeath( victim, inflictor, killer ) -- wep wont work, you'll need to use inflictor ~ Prior
   	local killersteam = killer:Team()
   	local plyteam = ply:Team() -- Call it once, not 50+ times
   
     if plyteam == TEAM_SURVIVOR then
         if killersteam == TEAM_INIT_INFECTED or killerteam == TEAM_INFECTED then
             ply:SetTeam(TEAM_INFECTED)
-            return -- Whats the return for?? ~ Prior
+      		Lang:Broadcast("Print", "General", Lang:Get("GotInfected", {victim:Nick(), attacker:Nick()}) )
+            return 
         elseif killersteam != TEAM_INIT_INFECTED or killerteam != TEAM_INFECTED and plyteam == TEAM_SURVIVOR then
             ply:SetTeam(TEAM_SPECTATOR)
-            return -- ^^^^
+            return
         end
 
         if killersteam == TEAM_INIT_INFECTED then
@@ -52,12 +61,31 @@ function GM:PlayerDeath( ply, wep, killer )
     
     killerteam = team.GetName( killer( 1 ):Team() ) -- THIS MAY NOT WORK, IF THIS DOESNT COME IN CHAT THEN THIS IS PROBABLY THE ERROR // SAM
     if killerteam == TEAM_INFECTED then
-        --chat.AddText(victim, " has been claimed by ", inflictor, " and is now part of the infected team.") -- sent to client, not run serverside
+        net.Start("PlayerInfectedText", victim, attacker)
     end
 end
  
 
 function GM:PlayerSpawn( ply )
-	if timer.Exists( "RoundLength" ) == true or timer.Exists( "PostRound" ) then GAMEMODE:PlayerSpawnAsSpectator( ply ) else -- If the round is active or the round had just finished, set the player as spectator when they join.
+	if timer.Exists( "RoundLength" ) == true or timer.Exists( "PostRound" ) 
+    then GAMEMODE:PlayerSpawnAsSpectator( ply ) else -- If the round is active or the round had just finished, set the player as spectator when they join. ~ Prior
       	return end
+end
+
+function GM:PlayerDisconnected(ply)
+	local brc = player.GetAll()
+	local str = {Color(255,255,0),"General", Color(255, 0, 0), ply:Nick(), ply:SteamID(), Color(0, 255, 0), "has disconnected from the server.", } 
+	Lang:Print( brc, str)
+end
+
+function GM:PlayerConnect(ply)
+  local brc = player.GetAll()
+  local str = {Color(255,255,0),"General", Color(0, 255, 0), ply:Nick(), ply:SteamID(), Color(255, 0, 0), "has connected to the server.", } 
+  Lang:Print( brc, str)
+end
+
+function GM:PlayerSpawn(ply)
+	local brc = player.GetAll()
+	local str = {Color(255,255,0),"General", Color(0, 255, 0), ply:Nick(), ply:SteamID(), Color(255, 0, 0), "has joined the server.", } 
+  	Lang:Print( brc, str )
 end
