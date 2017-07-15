@@ -33,11 +33,11 @@ function GM:PlayerLoadout( ply )
 		for _, v in pairs(infectedweps) do
      		ply:Give(v)
        	end
-    	
     	ply:SetModel(table.Random(SurvivorModels))
-  		return
-    end
-  
+        ply:SetRunSpeed(250)
+    	ply:SetWalkSpeed(120)
+    end 
+
 	if GetTeamName == TEAM_INFECTED then
     	for _, v in pairs(infectedweps) do
      	 	ply:Give(v)
@@ -45,16 +45,17 @@ function GM:PlayerLoadout( ply )
 		
     	local randolol = math.random(1, 6)
     	ply:SetModel("infected_0" .. randomise .. ".mdl")
-  		return
+        ply:SetRunSpeed(280)
+    	ply:SetWalkSpeed(150)
 	end
 
     if GetTeamName == TEAM_INIT_INFECTED then
     	for _, v in pairs(infectedweps) do
      	 	ply:Give(v)
     	end
-        
-    	ply:SetModel("initinfected.mdl")
-  		return
+        ply:SetRunSpeed(300)
+    	ply:SetWalkSpeed(170)
+        ply:SetModel("initinfected.mdl")
 	end
 
 end
