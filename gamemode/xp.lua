@@ -108,7 +108,7 @@ function xpscale( c, n )
         return c * math.pow( n, 2.3 )
 end
 	
-	hook.Add("PlayerInitialSpawn", "UpdatePlayerInfo", function(ply)
+hook.Add("PlayerInitialSpawn", "UpdatePlayerInfo", function(ply)
 		local sid64 = ply:SteamID64()
 		
 		-- check if there steamid64 is in the table if not add it
