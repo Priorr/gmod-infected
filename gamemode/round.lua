@@ -14,7 +14,7 @@ function RoundStart()
 	for k, v in pairs(totalply) do -- Put all players in a loop.
     	local randnumber = math.random(0, totalply) -- Get a random player from everybody that is online.
     	v[randnumber]:SetTeam(TEAM_INIT_INFECTED) -- Set that random player to the initial infected.
-    	-- add something to give the correct loadout for infect i think calling PlayerLoadout( ply ) will do it for everyone if it doesn't call it -meeno
+    	PlayerLoadout(ply)
     end
 end
 
