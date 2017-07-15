@@ -18,19 +18,20 @@ function ply:LoadingStats()
       	self:SetNWInt( "XP", Self:GetPData( "Level") )
     end
 end
-  
 
-xp = 0
-Ranks = {}
-Prestiges = {}
-playerCount = player.GetCount()
-	hook.Add("PlayerDeath", "xpOnKill", function(victim, wep, killer)
-      	if killer:Team() == TEAM_SURVIVOR and victim:Team() == TEAM_INFECTED and playerCount >= 5
-      		xp == xp + 50
-      	elseif killer:Team() == TEAM_INIT_INFECTED and victim:Team() == TEAM_SURVIVOR and playerCount >= 5
-        	xp == xp + 200
-      	elseif killer:Team() == TEAM_INFECTED and victim:Team() == TEAM_SURVIVOR and playerCount >= 5
-      		xp == xp + 200
-      	elseif killer:Team() == TEAM_SURVIVOR and victim:Team() == TEAM_INIT_INFECTION and playercount >= 5
-            xp == xp + 50
-      	end
+function ply:StatsAddXP( n )
+        self:SetNWInt( "XP", self:GetNWInt( "XP" ) + n )
+        if( tonumber( self:GetNWInt( "XP" ) ) > 99 && tonumber ( self:GetNWInt( "Level" ) ) < 10 ) then
+          	local tempxp = self;GetNWInt( "XP" ) - 100
+          	self:StatsLevelsUp()
+            self:SetNWInt( "XP", tempxp )
+          	print( "Level Up" )
+        elseif( tonumber( self:GetNWInt( "XP" ) ) > 99 && tonumber( self:GetNWInt( "Level" ) ) == 10 ) then
+          	self:SetNWInt( "XP", 100)
+        end
+end
+
+function ply:StatsLevelsUp()
+		self:SetPData( "XP", 0 )
+        self:SetNWInt( "Level", self:GetNWInt( "Level" ) + 1 )
+end
