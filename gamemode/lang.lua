@@ -45,7 +45,8 @@ function Lang:Broadcast( Action, varArgs, varExclude )
 	end
 end
 
-Lang.Connected = "1; Has joined the server." 
-	
+Lang.Connected = "1; 2; has connected to the server."   
 Lang.GotInfected = "1; Has been infected by 2; and is now an infected."
 Lang.Infected = "You've been infected find and kill the survivors."
+Lang.Disconnected = "1; 2; has left the server."
+Lang.Spawn = "1; has joined the server." 
