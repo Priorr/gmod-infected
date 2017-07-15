@@ -2,19 +2,16 @@ AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "sv_rounds.lua" )
 AddCSLuaFile( "sv_players.lua" )
-AddCSLuaFile( "xp_system.lua" )
+AddCSLuaFile( "xp.lua" )
 
-include( "xp_system.lua" )
+include( "xp.lua" )
 include( "lang.lua" )
 
-function GM:PlayerInitialSpawn 
-	ply:StatsLoad()
-  
-end
 local TEAM_INIT_INFECTED, TEAM_INFECTED, TEAM_SURVIVOR, TEAM_DEAD, TEAM_SPECTATOR = 1, 2, 3, 4, 5
 
 function GM:PlayerInitialSpawn( ply )
 	PlayerInititialSetup( ply )
+    ply:LoadingStats()
 end 
 
 
@@ -33,10 +30,12 @@ end
 function GM:PlayerDeath( victim, inflictor, killer ) -- wep wont work, you'll need to use inflictor ~ Prior
   	local killersteam = killer:Team()
   	local plyteam = ply:Team() -- Call it once, not 50+ times
+  	local victimsteam = victim:Team()
   
     if plyteam == TEAM_SURVIVOR then
         if killersteam == TEAM_INIT_INFECTED or killerteam == TEAM_INFECTED then
             ply:SetTeam(TEAM_INFECTED)
+      		Statsgive(ply, 25)
       		Lang:Broadcast("Print", "General", Lang:Get("GotInfected", {victim:Nick(), attacker:Nick()}) )
             return 
         elseif killersteam != TEAM_INIT_INFECTED or killerteam != TEAM_INFECTED and plyteam == TEAM_SURVIVOR then
@@ -59,9 +58,12 @@ function GM:PlayerDeath( victim, inflictor, killer ) -- wep wont work, you'll ne
         end 
     end
     
-    killerteam = team.GetName( killer( 1 ):Team() ) -- THIS MAY NOT WORK, IF THIS DOESNT COME IN CHAT THEN THIS IS PROBABLY THE ERROR // SAM
-    if killerteam == TEAM_INFECTED then
+    if killersteam == TEAM_INFECTED then
         net.Start("PlayerInfectedText", victim, attacker)
+    end
+  	
+  	if 
+  	
     end
 end
  
@@ -76,6 +78,7 @@ function GM:PlayerDisconnected(ply)
 	local brc = player.GetAll()
 	local str = {Color(255,255,0),"General", Color(255, 0, 0), ply:Nick(), ply:SteamID(), Color(0, 255, 0), "has disconnected from the server.", } 
 	Lang:Print( brc, str)
+  	ply:SavingStats()
 end
 
 function GM:PlayerConnect(ply)
