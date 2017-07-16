@@ -1,8 +1,7 @@
 function PlayerInititialSetup( ply )
 	ply:SetTeam( TEAM_SPECTATOR )
-    PlayerLoadout( ply )
+	PlayerLoadout( ply ) 
 end
-
 SurvivorModels = 
 {
   "models/player/Group01/Male_01.mdl",
