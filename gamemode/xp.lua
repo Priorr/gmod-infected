@@ -26,7 +26,7 @@ end
 
 function StatsAddXP( self, n )
         self:SetNWInt( "XP", self:GetNWInt( "XP" ) + n )
-        local xprequirement == tonumber( self:GetNWInt( "Level" ) * 300
+        local xprequirement = tonumber( self:GetNWInt( "Level" ) * 300
         if( tonumber( self:GetNWInt( "XP" ) ) > xprequirement - 1 && tonumber ( self:GetNWInt( "Level" ) ) < 80 ) then
           	local tempxp = self:GetNWInt( "XP" ) - xprequirement
           	self:StatsLevelsUp()
