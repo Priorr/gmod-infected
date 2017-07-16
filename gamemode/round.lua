@@ -8,9 +8,14 @@ CreateConVar( "infected_postround_time", "30", "Set the legnth of the post-round
 WIN_SURVIVOR = TEAM_SURVIVOR
 WIN_INFECTED = TEAM_INFECTED
 
+function RoundTimers()
+timer.Create("PreRound", GetConVarNumber("infected_preround_time"), 1, RoundStart()) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
+timer.Create( "RoundLength", GetConVarNumber("infected_round_time"), 1, RoundEnd() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
+timer.Create( "PostRound", GetConVarNumber("infected_postround_time"), 1, RoundStart() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
+end
+
 function RoundStart()
 	Round.State = RoundStarted
-	timer.Create( "RoundLength", GetConVarNumber("infected_round_time"), 1, RoundEnd() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
     local totalply = #player.GetAll()
 	for k, v in pairs(totalply) do -- Put all players in a loop.
     	local randnumber = math.random(0, totalply) -- Get a random player from everybody that is online.
@@ -22,7 +27,6 @@ end
 function RoundSetup( ply )
 	Round.State = RoundSetUp
 	game.CleanUpMap() 
-	timer.Create("PreRound", GetConVarNumber("infected_preround_time"), 1, RoundStart()) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
 	SpawnPlayers()
   	print("Spawning Players.")
   	for k, v in pairs(player.GetAll())
@@ -34,8 +38,7 @@ end
 function RoundActive()
     Round.State = RoundActive
     local infected = {}
-    local survivors = {}
-    
+    local survivors = {}  
     for k,v ipairs( players ) do
         if v:Alive() then
             if v:Team() == TEAM_SURVIVOR then
@@ -57,7 +60,6 @@ end
 function RoundEnd(winningteam)
     Round.State = RoundEnd
     if table.sort( team.GetPlayers(TEAM_SURVIVOR) ) == 0 then
-        timer.Create( "PostRound", GetConVarNumber("infected_postround_time"), 1, RoundStart() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
     end  
   
     hook.Call("InfectedRoundWin", nil, winningteam)
