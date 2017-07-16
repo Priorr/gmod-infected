@@ -59,7 +59,7 @@ hook.Add("PlayerInitialSpawn", "UpdatePlayerInfo", function(ply)
 		local sid64 = ply:SteamID64()
 		
 		-- check if there steamid64 is in the table if not add it
-		local res = sql.Query( "SELECT * FROM infected_stats WHERE UID = '"..id64.."'")
+		local res = sql.Query( "SELECT * FROM infected_stats WHERE UID = '"..sid64.."'")
 		if not res then
 			res = sql.Query( "INSERT INTO infected_stats VALUES( '"..sid64.."', '"..ply:Nick().."', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0')" )
 		else
