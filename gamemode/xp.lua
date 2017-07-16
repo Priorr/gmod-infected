@@ -1,4 +1,4 @@
-function ply:SavingStats()
+function SavingStats(ply)
     self:SetPData( "Level", self;GetNWInt( "Level" ) )
 	self:SetPData( "XP", self;GetNWInt( "XP" ) )
 
