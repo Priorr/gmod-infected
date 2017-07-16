@@ -1,4 +1,3 @@
-Filename = xp.lua
 function ply:SavingStats()
     self:SetPData( "Level", self;GetNWInt( "Level" ) )
 	self:SetPData( "XP", self;GetNWInt( "XP" ) )
