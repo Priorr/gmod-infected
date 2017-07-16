@@ -3,9 +3,10 @@ AddCSLuaFile( "shared.lua" )
 AddCSLuaFile( "sv_rounds.lua" )
 AddCSLuaFile( "sv_players.lua" )
 AddCSLuaFile( "xp.lua" )
+AddCSLuaFile( "sv_lang.lua" )
 
 include( "xp.lua" )
-include( "lang.lua" )
+include( "sv_lang.lua" )
 
 local TEAM_INIT_INFECTED, TEAM_INFECTED, TEAM_SURVIVOR, TEAM_DEAD, TEAM_SPECTATOR = 1, 2, 3, 4, 5
 
