@@ -1,4 +1,4 @@
-function PlayerInititialSetup( ply )
+function PlayerInitialSetup( ply )
 	ply:SetTeam( TEAM_SPECTATOR )
 	PlayerLoadout( ply ) 
 end
