@@ -75,21 +75,8 @@ function GM:PlayerSpawn( ply )
       	return end
 end
 
-function GM:PlayerDisconnected(ply)
-	local brc = player.GetAll()
-	local str = {Color(255,255,0),"General", Color(255, 0, 0), ply:Nick(), ply:SteamID(), Color(0, 255, 0), "has disconnected from the server.", } 
-	Lang:Print( brc, str)
-  	ply:SavingStats()
+function PlayerSpawn(ply)
+	Lang:Broadcast( "Print", { "General", Lang:Get("Connect", {ply:Nick()})})
+	print("nigger")
 end
 
-function GM:PlayerConnect(ply)
-  local brc = player.GetAll()
-  local str = {Color(255,255,0),"General", Color(0, 255, 0), ply:Nick(), ply:SteamID(), Color(255, 0, 0), "has connected to the server.", } 
-  Lang:Print( brc, str)
-end
-
-function GM:PlayerSpawn(ply)
-	local brc = player.GetAll()
-	local str = {Color(255,255,0),"General", Color(0, 255, 0), ply:Nick(), ply:SteamID(), Color(255, 0, 0), "has joined the server.", } 
-  	Lang:Print( brc, str )
-end
