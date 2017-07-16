@@ -4,11 +4,14 @@ Lang.Default = "niggie this shit broke ask the developer why"
 Lang.Generic = "1;"
 
 function Lang:Get(  Identifier, varArgs )
-  
 	if not Lang[ Identifier ] then
     	varArgs = {Identifier}
     	Identifier = "Default"
     end
+	
+	if not varArgs or not type( varArgs ) == "table" then
+		varArgs = {}
+	end
   
   	local Text = Lang[ Identifier ]
     for ParamID, Arg in pairs(varArgs) do
@@ -19,9 +22,11 @@ function Lang:Get(  Identifier, varArgs )
   
 end
 
+
+
 -- send this a list of players i'll show you how to use all of these below
 function Lang:Send( ply, Action, varArgs )
-	net.WriteString( szAction )
+	net.WriteString( Action )
 	
 	if varArgs and type( varArgs ) == "table" then
 		net.WriteTable( varArgs )
@@ -35,7 +40,10 @@ function Lang:Broadcast( Action, varArgs, varExclude )
 	net.WriteString( Action )
 	
 	if varArgs and type( varArgs ) == "table" then
+		net.WriteBit( true )
 		net.WriteTable( varArgs )
+	else
+		net.WriteBit( false )
 	end
 	
 	if varExclude and (type( varExlude ) == "table" or (IsValid( varExclude ) and varExclude:IsPlayer())) then
@@ -45,7 +53,7 @@ function Lang:Broadcast( Action, varArgs, varExclude )
 	end
 end
 
-Lang.Connected = "1; 2; has connected to the server."   
+Lang.Connect = "1; has connected to the server."   
 Lang.GotInfected = "1; Has been infected by 2; and is now an infected."
 Lang.Infected = "You've been infected find and kill the survivors."
 Lang.Disconnected = "1; 2; has left the server."
