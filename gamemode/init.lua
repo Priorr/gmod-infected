@@ -63,9 +63,6 @@ function GM:PlayerDeath( victim, inflictor, killer ) -- wep wont work, you'll ne
         net.Start("PlayerInfectedText", victim, attacker)
     end
   	
-  	if 
-  	
-    end
 end
  
 
