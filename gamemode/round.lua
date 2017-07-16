@@ -9,6 +9,7 @@ WIN_SURVIVOR = TEAM_SURVIVOR
 WIN_INFECTED = TEAM_INFECTED
 
 function RoundStart()
+	Round.State = RoundStarted
 	timer.Create( "RoundLength", GetConVarNumber("infected_round_time"), 1, RoundEnd() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
     local totalply = #player.GetAll()
 	for k, v in pairs(totalply) do -- Put all players in a loop.
@@ -19,6 +20,7 @@ function RoundStart()
 end
 
 function RoundSetup( ply )
+	Round.State = RoundSetUp
 	game.CleanUpMap() 
 	timer.Create("PreRound", GetConVarNumber("infected_preround_time"), 1, RoundStart()) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
 	SpawnPlayers()
@@ -30,6 +32,7 @@ function RoundSetup( ply )
 end
 
 function RoundActive()
+    Round.State = RoundActive
     local infected = {}
     local survivors = {}
     
@@ -43,8 +46,7 @@ function RoundActive()
             end
         end
     end
-
-    if timer.Exists("RoundLength") -- This returns a boolean, it wont work unless you add "== true" ~ Prior
+	if timer.Exists("RoundLength") -- This returns a boolean, it wont work unless you add "== true" ~ Prior
         if(#survivors == (0) then
             RoundEnd(WIN_INFECTED)
         elseif(#survivors => 1 and timer.TimerLeft("RoundLength") == 0) then -- It shouldn't be less than one, it should be more then one?
@@ -53,6 +55,7 @@ function RoundActive()
 end
 
 function RoundEnd(winningteam)
+    Round.State = RoundEnd
     if table.sort( team.GetPlayers(TEAM_SURVIVOR) ) == 0 then
         timer.Create( "PostRound", GetConVarNumber("infected_postround_time"), 1, RoundStart() ) -- Need to change GetConvarNumber too GetConvsr and ConVar:GetInt due to GetConVarNumber being deprecated
     end  
