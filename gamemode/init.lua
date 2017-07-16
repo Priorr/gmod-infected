@@ -11,7 +11,7 @@ include( "sv_lang.lua" )
 local TEAM_INIT_INFECTED, TEAM_INFECTED, TEAM_SURVIVOR, TEAM_DEAD, TEAM_SPECTATOR = 1, 2, 3, 4, 5
 
 function GM:PlayerInitialSpawn( ply )
-	PlayerInititialSetup( ply )
+	PlayerInitialSetup( ply )
 	LoadingStats()
 end 
 
