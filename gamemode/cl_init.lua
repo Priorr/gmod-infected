@@ -1,4 +1,7 @@
-function Lang:Print( Prefix, varText )
+Link = {}
+
+
+function Link:Print( Prefix, varText )
 	if not varText then return end
 	if type( varText ) != "table" then varText = { varText } end
 	
