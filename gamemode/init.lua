@@ -7,6 +7,7 @@ AddCSLuaFile( "sv_lang.lua" )
 
 include( "xp.lua" )
 include( "sv_lang.lua" )
+include( "sv_player.lua" )
 
 local TEAM_INIT_INFECTED, TEAM_INFECTED, TEAM_SURVIVOR, TEAM_DEAD, TEAM_SPECTATOR = 1, 2, 3, 4, 5
 
