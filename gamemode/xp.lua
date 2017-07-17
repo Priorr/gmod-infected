@@ -1,8 +1,8 @@
-
 function SavingStats(ply)
     self:SetPData( "Level", self:GetNWInt( "Level" ) )
     self:SetPData( "XP", self:GetNWInt( "XP" ) )
 end
+
 function LoadingStats(ply)
     if( self:GetPData( "Level" ) == nil ) then
         self:SetPData( "Level", 0 )
