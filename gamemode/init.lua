@@ -13,6 +13,7 @@ local TEAM_INIT_INFECTED, TEAM_INFECTED, TEAM_SURVIVOR, TEAM_DEAD, TEAM_SPECTATO
 function GM:PlayerInitialSpawn( ply )
 	PlayerInitialSetup( ply )
 	LoadingStats()
+	PlayerSpawn(ply)
 end 
 
 
