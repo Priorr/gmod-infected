@@ -1,7 +1,7 @@
 AddCSLuaFile( "cl_init.lua" )
 AddCSLuaFile( "shared.lua" )
-AddCSLuaFile( "sv_rounds.lua" )
-AddCSLuaFile( "sv_players.lua" )
+AddCSLuaFile( "sv_round.lua" )
+AddCSLuaFile( "sv_player.lua" )
 AddCSLuaFile( "xp.lua" )
 AddCSLuaFile( "sv_lang.lua" )
 
