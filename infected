@@ -1,0 +1,20 @@
+"Gamemode"
+{
+	"base"		"base"
+	"title"			"infected"
+	"menusystem"	"0"
+	"workshopid"	""
+}
+
+"settings"
+	{
+		1
+		{
+			"name"		"infected"
+			"version"		"v1"
+			"help"			"infected"
+			"type"			"numeric"
+			"default"		"1"
+		}
+	}
+}
