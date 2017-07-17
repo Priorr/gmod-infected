@@ -40,10 +40,7 @@ function Lang:Broadcast( Action, varArgs, varExclude )
 	net.WriteString( Action )
 	
 	if varArgs and type( varArgs ) == "table" then
-		net.WriteBit( true )
 		net.WriteTable( varArgs )
-	else
-		net.WriteBit( false )
 	end
 	
 	if varExclude and (type( varExlude ) == "table" or (IsValid( varExclude ) and varExclude:IsPlayer())) then
